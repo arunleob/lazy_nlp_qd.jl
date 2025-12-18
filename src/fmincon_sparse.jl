@@ -12,7 +12,7 @@ struct SparseProblemMOI <: MOI.AbstractNLPEvaluator
     sparsity_jac
     hessian_lagrangian::Bool
     sparsity_hess
-    params::NamedTuple
+    params
     cost # ::Function
     cost_gradient!
     constraint! # ::Function
@@ -45,7 +45,7 @@ function SparseProblemMOI(n_nlp,
         sparsity_jac,
         hessian_lagrangian::Bool,
         nothing,
-        params::NamedTuple,
+        params,
         cost, # ::Function
         cost_gradient!,
         constraint!, # ::Function
@@ -81,7 +81,7 @@ function SparseProblemMOI(n_nlp,
         sparsity_jac,
         hessian_lagrangian::Bool,
         sparsity_hess,
-        params::NamedTuple,
+        params,
         cost, # ::Function
         cost_gradient!,
         constraint!, # ::Function
@@ -153,7 +153,7 @@ function sparse_fmincon(cost::Function,
                         c_l::Vector,
                         c_u::Vector,
                         x0::Vector,
-                        params::NamedTuple;
+                        params;
                         tol = 1e-4,
                         c_tol = 1e-4,
                         max_iters = 1_000,
@@ -232,7 +232,7 @@ function sparse_fmincon(cost::Function,
                         c_l::Vector,
                         c_u::Vector,
                         x0::Vector,
-                        params::NamedTuple;
+                        params;
                         tol = 1e-4,
                         c_tol = 1e-4,
                         max_iters = 1_000,
